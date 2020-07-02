@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/softPink"
+    android:orientation="vertical"
+    tools:context=".ui.input.ActionActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/tbInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/softPurple"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:navigationIcon="@drawable/ic_back"
+        app:title="Input Data" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/tbInput"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <EditText
+            android:id="@+id/etNIM"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/bg_text_2"
+            android:hint="Masukkan NIM"
+            android:inputType="number"
+            android:maxLength="10"
+            android:maxLines="1"
+            android:padding="16dp"
+            android:singleLine="true" />
+
+        <EditText
+            android:id="@+id/etNama"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/bg_text_2"
+            android:hint="Masukkan Nama"
+            android:maxLines="1"
+            android:padding="16dp"
+            android:singleLine="true" />
+
+        <EditText
+            android:id="@+id/etNoHp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/bg_text_2"
+            android:hint="Masukkan Nomor HP"
+            android:inputType="number"
+            android:maxLength="12"
+            android:maxLines="1"
+            android:padding="16dp"
+            android:singleLine="true" />
+
+        <EditText
+            android:id="@+id/etJurusan"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/bg_text_2"
+            android:hint="Masukkan Jurusan"
+            android:maxLines="1"
+            android:padding="16dp"
+            android:singleLine="true" />
+
+        <EditText
+            android:id="@+id/etSemester"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/bg_text_2"
+            android:hint="Masukkan Semester"
+            android:inputType="number"
+            android:maxLength="2"
+            android:maxLines="1"
+            android:padding="16dp"
+            android:singleLine="true" />
+
+        <EditText
+            android:id="@+id/etAlamat"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/bg_text_2"
+            android:hint="Masukkan Alamat"
+            android:maxLines="1"
+            android:padding="16dp"
+            android:singleLine="true" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp">
+
+            <Button
+                android:id="@+id/btnSave"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="4dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_button_insert"
+                android:text="Simpan"
+                android:textColor="@android:color/white"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/btnBatal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_button_delete"
+                android:text="Batal"
+                android:textColor="@android:color/white"
+                android:textSize="16sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/pbAction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone" />
+</RelativeLayout>
