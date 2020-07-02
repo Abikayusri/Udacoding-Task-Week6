@@ -27,13 +27,19 @@ class LoginViewModel : ViewModel() {
                 isEmpty.value = "Data tidak boleh kosong"
             }
             password.length <= 5 -> {
+                isLoading.value = false
                 isError.value = "Password harus lebih dari 5"
             }
             else -> {
                 repository.loginData(email, password, { response ->
-                    isLoading.value = false
-                    rLoginUser.value = response
-                    isSuccess.value = true
+                    if (response.isSuccess ?: true){
+                        isLoading.value = false
+                        rLoginUser.value = response
+                        isSuccess.value = true
+                    } else {
+                        isLoading.value = false
+                        isError.value = response.message
+                    }
                 }, { error ->
                     isLoading.value = false
                     isError.value = error.localizedMessage

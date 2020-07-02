@@ -1,4 +1,4 @@
-package abika.sinau.mahasiswaappabika.ui.input
+package abika.sinau.mahasiswaappabika.ui.action
 
 import abika.sinau.mahasiswaappabika.model.mahasiswa.ResponseMahasiswaAction
 import abika.sinau.mahasiswaappabika.repo.RepositoryMahasiswa
@@ -15,6 +15,7 @@ class ActionViewModel : ViewModel() {
     val repository = RepositoryMahasiswa()
     var rActionMhs = MutableLiveData<ResponseMahasiswaAction>()
     var isError = MutableLiveData<String>()
+    var isStatus = MutableLiveData<String>()
     var isLoading = MutableLiveData<Boolean>()
     var isSuccess = MutableLiveData<Boolean>()
 
@@ -45,6 +46,7 @@ class ActionViewModel : ViewModel() {
                 repository.tambahData(nim, nama, nohp, jurusan, semester, alamat, { response ->
                     isLoading.value = false
                     rActionMhs.value = response
+                    isStatus.value = "Sukses menambahkan data"
                     isSuccess.value = true
                 }, { error ->
                     isLoading.value = false
@@ -89,6 +91,7 @@ class ActionViewModel : ViewModel() {
                     { response ->
                         isLoading.value = false
                         rActionMhs.value = response
+                        isStatus.value = "Sukses update data"
                         isSuccess.value = true
                     },
                     { error ->

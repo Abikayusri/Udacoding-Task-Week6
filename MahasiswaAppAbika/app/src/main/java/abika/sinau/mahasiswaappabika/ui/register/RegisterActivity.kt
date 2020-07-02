@@ -1,13 +1,12 @@
 package abika.sinau.mahasiswaappabika.ui.register
 
 import abika.sinau.mahasiswaappabika.R
-import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import kotlinx.android.synthetic.main.activity_register.*
 
 class RegisterActivity : AppCompatActivity() {
@@ -18,7 +17,7 @@ class RegisterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
-        viewModel = ViewModelProviders.of(this).get(RegisterViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(RegisterViewModel::class.java)
 
         attachObserve()
 
@@ -71,7 +70,7 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun showSuccess(it: Boolean) {
-        if (it == true){
+        if (it == true) {
             showToast("Data berhasil ditambahkan")
             finish()
         }

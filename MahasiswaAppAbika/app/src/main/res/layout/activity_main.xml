@@ -27,7 +27,7 @@
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
                 android:src="@drawable/london_flat"
-                android:tint="#BBE1B7F4"
+                android:tint="#BBDA91FB"
                 app:layout_collapseMode="parallax" />
 
             <FrameLayout

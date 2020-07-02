@@ -2,6 +2,7 @@ package abika.sinau.mahasiswaappabika.network
 
 import abika.sinau.mahasiswaappabika.model.user.ResponseUserLogin
 import abika.sinau.mahasiswaappabika.model.user.ResponseUserRegister
+import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
@@ -20,12 +21,13 @@ interface UserService {
         @Field("nama") nama: String,
         @Field("email") email: String,
         @Field("password") password: String
-    ):Single<ResponseUserRegister>
+    ): Single<ResponseUserRegister>
 
     @FormUrlEncoded
     @POST("userLogin.php")
     fun login(
         @Field("email") email: String,
         @Field("password") password: String
-    ):Single<ResponseUserLogin>
+//    ):Single<ResponseUserLogin>
+    ): Observable<ResponseUserLogin>
 }

@@ -16,6 +16,7 @@ class MainViewModel : ViewModel() {
     var rDataMhs = MutableLiveData<ResponseMahasiswaData>()
     var rActionMhs = MutableLiveData<ResponseMahasiswaAction>()
     var isError = MutableLiveData<String>()
+    var isStatus = MutableLiveData<String>()
     var isLoading = MutableLiveData<Boolean>()
     var isSuccess = MutableLiveData<Boolean>()
 
@@ -24,7 +25,6 @@ class MainViewModel : ViewModel() {
         repository.getDataMahasiswa({ response ->
             rDataMhs.value = response
             isLoading.value = false
-
         }, { error ->
             isError.value = error.localizedMessage
             isLoading.value = false
@@ -35,11 +35,13 @@ class MainViewModel : ViewModel() {
         isLoading.value = true
         repository.hapusData(id, { response ->
             rActionMhs.value = response
+            isStatus.value = "Data berhasil dihapus"
             isSuccess.value = true
             isLoading.value = false
 
         }, { error ->
             isError.value = error.localizedMessage
+            isStatus.value = "Data gagal dihapus"
             isLoading.value = false
         })
     }

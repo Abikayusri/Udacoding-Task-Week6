@@ -2,7 +2,7 @@ package abika.sinau.mahasiswaappabika.adapter
 
 import abika.sinau.mahasiswaappabika.R
 import abika.sinau.mahasiswaappabika.model.mahasiswa.DataItemMahasiswa
-import abika.sinau.mahasiswaappabika.ui.input.ActionActivity
+import abika.sinau.mahasiswaappabika.ui.action.ActionActivity
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
@@ -38,7 +38,6 @@ class MahasiswaAdapter(val data: List<DataItemMahasiswa?>?, val itemClick: OnCli
         holder.jurusan.text = item?.mahasiswaJurusan
 
         holder.itemView.setOnClickListener {
-//            itemClick.detail(item)
             Toast.makeText(
                 context,
                 "Anda menekan ${data?.get(position)?.mahasiswaNama}",
@@ -61,7 +60,6 @@ class MahasiswaAdapter(val data: List<DataItemMahasiswa?>?, val itemClick: OnCli
         val jurusan = view.tvItemJurusan
         val hapus = view.btnHapus
     }
-
 
     interface OnClickListener{
         fun hapus(item: DataItemMahasiswa?)

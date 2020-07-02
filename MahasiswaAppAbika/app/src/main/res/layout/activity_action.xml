@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/softPink"
     android:orientation="vertical"
-    tools:context=".ui.input.ActionActivity">
+    tools:context=".ui.action.ActionActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/tbInput"

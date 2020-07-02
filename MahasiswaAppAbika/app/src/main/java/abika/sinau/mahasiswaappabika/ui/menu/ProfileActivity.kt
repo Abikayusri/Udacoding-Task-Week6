@@ -10,12 +10,9 @@ class ProfileActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
+
         initToolbar()
-
-        val session = SessionManager(this)
-
-        tvProfileNama.text = session.nama
-        tvProfileEmail.text = session.email
+        initSession()
     }
 
     private fun initToolbar() {
@@ -23,5 +20,12 @@ class ProfileActivity : AppCompatActivity() {
             onBackPressed()
         }
         tbProfile.title = "Pofile"
+    }
+
+    private fun initSession() {
+        val session = SessionManager(this)
+
+        tvProfileNama.text = session.nama
+        tvProfileEmail.text = session.email
     }
 }

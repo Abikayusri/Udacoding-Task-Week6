@@ -1,15 +1,13 @@
-package abika.sinau.mahasiswaappabika.ui.input
+package abika.sinau.mahasiswaappabika.ui.action
 
 import abika.sinau.mahasiswaappabika.R
 import abika.sinau.mahasiswaappabika.model.mahasiswa.DataItemMahasiswa
-import abika.sinau.mahasiswaappabika.ui.register.RegisterViewModel
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
-import io.reactivex.rxjava3.internal.operators.observable.ObservableError
+import androidx.lifecycle.ViewModelProvider
 import kotlinx.android.synthetic.main.activity_action.*
 
 class ActionActivity : AppCompatActivity() {
@@ -96,6 +94,14 @@ class ActionActivity : AppCompatActivity() {
         viewModel.isSuccess.observe(this, Observer {
             showSuccess(it)
         })
+
+        viewModel.isStatus.observe(this, Observer {
+            showStatus(it)
+        })
+    }
+
+    private fun showStatus(it: String?) {
+        showToast(it)
     }
 
     private fun showSuccess(it: Boolean?) {
@@ -113,11 +119,15 @@ class ActionActivity : AppCompatActivity() {
     }
 
     private fun showError(it: String?) {
-        Toast.makeText(this@ActionActivity, it, Toast.LENGTH_SHORT).show()
+        showToast(it)
+    }
+
+    private fun showToast(it: String?) {
+        Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
     }
 
     private fun initToolbar() {
-        viewModel = ViewModelProviders.of(this).get(ActionViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(ActionViewModel::class.java)
         tbInput.setNavigationOnClickListener {
             onBackPressed()
         }

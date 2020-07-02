@@ -5,7 +5,8 @@ import abika.sinau.mahasiswaappabika.adapter.MahasiswaAdapter
 import abika.sinau.mahasiswaappabika.helper.SessionManager
 import abika.sinau.mahasiswaappabika.model.mahasiswa.DataItemMahasiswa
 import abika.sinau.mahasiswaappabika.model.mahasiswa.ResponseMahasiswaData
-import abika.sinau.mahasiswaappabika.ui.input.ActionActivity
+import abika.sinau.mahasiswaappabika.ui.action.ActionActivity
+import abika.sinau.mahasiswaappabika.ui.login.LoginActivity
 import abika.sinau.mahasiswaappabika.ui.menu.ProfileActivity
 import android.content.Intent
 import android.os.Bundle
@@ -17,7 +18,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -28,10 +29,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        initSession()
+
+        session = SessionManager(this)
+        tvMainUser.text = session.nama ?: "Datanya"
+
         initToolbar()
         initViewModel()
-
         attachObserve()
 
         fab.setOnClickListener {
@@ -40,16 +43,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initViewModel() {
-        viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
         viewModel.getListDataMhs()
     }
 
-    private fun initSession() {
+    private fun initToolbar() {
         session = SessionManager(this)
         tvMainUser.text = session.nama ?: "Datanya"
-    }
 
-    private fun initToolbar() {
         val toolbar: Toolbar = findViewById<View>(R.id.tbMain) as Toolbar
         setSupportActionBar(toolbar)
         title = "Home"
@@ -69,7 +70,13 @@ class MainActivity : AppCompatActivity() {
                 true
             }
             R.id.actionLogout -> {
-
+                val intent = Intent(this, LoginActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+                startActivity(intent)
+                showToast("Logout sukses")
+                finish()
                 true
             }
             else -> true
@@ -88,6 +95,10 @@ class MainActivity : AppCompatActivity() {
         viewModel.isLoading.observe(this, Observer {
             showLoading(it)
         })
+
+        viewModel.isStatus.observe(this, Observer {
+            showToast(it)
+        })
     }
 
     private fun showLoading(it: Boolean?) {
@@ -99,7 +110,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showError(it: String) {
-        Toast.makeText(this@MainActivity, it, Toast.LENGTH_SHORT).show()
+        showToast(it)
     }
 
     private fun showData(it: ResponseMahasiswaData?) {
@@ -126,7 +137,11 @@ class MainActivity : AppCompatActivity() {
         viewModel.getHapusDataMhs(id ?: "")
     }
 
-    override fun onResume(){
+    private fun showToast(it: String?) {
+        Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onResume() {
         super.onResume()
         viewModel.getListDataMhs()
     }
