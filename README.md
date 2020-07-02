@@ -1,6 +1,7 @@
 # Udacoding-Task-Week6
 
-## Implementasi:
+## Implementasi Update:
+- SharedPreferences
 - Reactive Programming
 - Design Pattern: MVVM
 - Database: Localhost
