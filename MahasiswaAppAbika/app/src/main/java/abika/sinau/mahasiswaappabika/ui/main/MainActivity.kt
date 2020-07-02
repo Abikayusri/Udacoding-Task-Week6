@@ -77,7 +77,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun attachObserve() {
-        viewModel.responseDataMhs.observe(this, Observer {
+        viewModel.rDataMhs.observe(this, Observer {
             showData(it)
         })
 
@@ -98,8 +98,8 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun showError(it: Throwable?) {
-        Toast.makeText(this@MainActivity, it?.message, Toast.LENGTH_SHORT).show()
+    private fun showError(it: String) {
+        Toast.makeText(this@MainActivity, it, Toast.LENGTH_SHORT).show()
     }
 
     private fun showData(it: ResponseMahasiswaData?) {
@@ -109,7 +109,9 @@ class MainActivity : AppCompatActivity() {
                     setTitle("Hapus Data")
                     setMessage("Yakin menghapus data?")
                     setPositiveButton("Hapus") { dialog, which ->
-
+                        showHapusData(item?.idMahasiswa)
+                        dialog.dismiss()
+                        viewModel.getListDataMhs()
                     }
                     setNegativeButton("Cancel") { dialog, which ->
                         dialog.dismiss()
@@ -118,5 +120,14 @@ class MainActivity : AppCompatActivity() {
             }
         })
         rvMain.adapter = adapter
+    }
+
+    private fun showHapusData(id: String?) {
+        viewModel.getHapusDataMhs(id ?: "")
+    }
+
+    override fun onResume(){
+        super.onResume()
+        viewModel.getListDataMhs()
     }
 }

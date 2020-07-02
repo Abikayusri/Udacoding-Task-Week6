@@ -24,8 +24,8 @@ interface MahasiswaService {
     @FormUrlEncoded
     @POST("insertData.php")
     fun insertData(
-        @Field("nama") nama: String,
         @Field("nim") nim: String,
+        @Field("nama") nama: String,
         @Field("nohp") nohp: String,
         @Field("jurusan") jurusan: String,
         @Field("semester") semester: String,

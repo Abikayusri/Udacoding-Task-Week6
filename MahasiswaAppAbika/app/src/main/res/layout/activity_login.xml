@@ -98,7 +98,7 @@
             tools:layout_editor_absoluteY="644dp" />
 
         <TextView
-            android:id="@+id/tvDaftar"
+            android:id="@+id/tvRegister"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text=" Daftar Disini"
